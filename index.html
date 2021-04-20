@@ -1,1 +1,148 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>My Portfolio</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>2D Vector Field Modelling in Pygame</h2>
+      <h5>April 4, 2021</h5>
+      <h5>
+        In this application a number of points spawn in a predefined state, and are acted on by a vector field to produce some fascinating dynamics.
+      </h5>
+      <div>
+        <img src="img1.png" style="width:25em; height:25em;">
+        <img src="img2.png" style="width:25em; height:25em">
+        <img src="img3.png" style="width:25em; height:25em">
+      </div>
+      <p>
+        Newtonian gravity is very hard to organically simulate, in my previous simulations I set out to compute the equations of motion by finding the sum of the acceleration vectors and the sum of the conservation of angular momentum vectors for each body, but I was unable to do the latter. Which caused the bodies to only exhibit parabolic and hyperbolic behaviour but not elliptical. Previously I had tried setting the equations of motion before hand and not had to deal with the vector computation, but although ellipitcal behaviour was exhibited it lacked the organic feeling of the computer finding the equations of motion. 
+      </p>
+      <p>
+        So instead I turned to vector fields, and made a small application which models the motion of particles by a vector field. Although this is not what I set out to originally do - which was simulate Newtonian gravity with only the masses and distances of each object - it is facinating and produces amazing behaviour, a refreshing way to view vector fields.
+      </p>
+
+      <p>
+      Each point is an object, a very simple object with just a draw function and a varaible for its position vector, radius and color.
+      <pre><code>class Body:
+    def __init__(self, x, y, color, R):
+        self.r = np.array([x, y], dtype=float)
+        self.color, self.R = color, R
+    def draw(self, window):
+        pg.draw.circle(window, self.color, self.r, self.R)</code></pre>
+
+      Then I made a for loop which adds an object to an array each iteration. Here the initial position can also be configured,
+      <pre><code>BORDER = 200
+for i in range(BORDER, HEIGHT-BORDER, 5):
+    for j in range(BORDER, HEIGHT-BORDER, 5):
+        objects.append(Body(i, j, WHITE, 1))</code></pre>
+
+      Then to update the position of each point I just iterate through the array and apply its equations of motion.
+      <pre><code>for i in objects:
+    i.color = BLUE
+    i.r += F(i.r[0], i.r[1])</code></pre>
+
+      Thats it! Well of course it not much, its just simply applying a function in both x and y to a large set of particles. The code is linked <a href="url">here</a>
+      </p>
+    
+    </div>
+
+  </div>
+
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>I am a programmer who loves simulating the universe using graphics and mathematics.</p>
+    </div>
+    <div class="card">
+      <h3>Contact Me</h3>
+      <p>robertmapes@protonmail.com</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>
