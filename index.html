@@ -91,9 +91,9 @@ body {
         In this application a number of points spawn in a predefined state, and are acted on by a vector field to produce some fascinating dynamics.
       </h5>
       <div>
-        <img src="img1.png" style="width:25em; height:25em;">
-        <img src="img2.png" style="width:25em; height:25em">
-        <img src="img3.png" style="width:25em; height:25em">
+        <img src="images/img1.PNG" style="width:25em; height:25em;">
+        <img src="images/im2.PNG" style="width:25em; height:25em">
+        <img src="images/img3.PNG" style="width:25em; height:25em">
       </div>
       <p>
 Newtonian gravity is very hard to organically simulate, in my previous simulations I set out to compute the equations of motion by finding the sum of the acceleration vectors and the sum of the sum of the angular velocity vectors for each body, but I was unable to do the latter. Which caused the bodies to only exhibit parabolic and hyperbolic behaviour but not elliptical. Previously I had tried setting the equations of motion before hand and not had to deal with the vector computation, but although ellipitcal behaviour was exhibited it lacked the organic feeling of the computer finding the equations of motion.
@@ -117,7 +117,7 @@ for i in range(BORDER, HEIGHT-BORDER, 5):
     for j in range(BORDER, HEIGHT-BORDER, 5):
         objects.append(Body(i, j, WHITE, 1))</code></pre>
 
-        <img src="img4.png" style="width:25em; height:25em; padding: 1em;">
+        <img src="images/img4.png" style="width:25em; height:25em; padding: 1em;">
        
         <br>
 
@@ -139,7 +139,7 @@ def F(x, y):
 
       Let see what happens,<br>
       <video width="500", height=250 controls>
-        <source src="vid1.mkv"></source>
+        <source src="videos/vid1.MKV"></source>
       </video>
 
       <br>
