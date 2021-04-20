@@ -11,7 +11,7 @@
 body {
   font-family: Arial;
   padding: 20px;
-  background: #f1f1f1;
+  background: #009dff;
 }
 
 /* Header/Blog Title */
@@ -19,7 +19,8 @@ body {
   padding: 30px;
   font-size: 40px;
   text-align: center;
-  background: white;
+  border-style: solid;
+  background: lightblue;
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -45,7 +46,8 @@ body {
 
 /* Add a card effect for articles */
 .card {
-   background-color: white;
+   background-color: #add8e6;
+   border-style: solid;
    padding: 20px;
    margin-top: 20px;
 }
@@ -77,7 +79,7 @@ body {
 <body>
 
 <div class="header">
-  <h2>My Portfolio</h2>
+  <h2>Blogolio</h2>
 </div>
 
 <div class="row">
@@ -89,15 +91,15 @@ body {
         In this application a number of points spawn in a predefined state, and are acted on by a vector field to produce some fascinating dynamics.
       </h5>
       <div>
-        <img src="images/img1.PNG" style="width:25em; height:25em;">
-        <img src="images/img2.PNG" style="width:25em; height:25em">
-        <img src="images/img3.PNG" style="width:25em; height:25em">
+        <img src="img1.png" style="width:25em; height:25em;">
+        <img src="img2.png" style="width:25em; height:25em">
+        <img src="img3.png" style="width:25em; height:25em">
       </div>
       <p>
-        Newtonian gravity is very hard to organically simulate, in my previous simulations I set out to compute the equations of motion by finding the sum of the acceleration vectors and the sum of the sum of the angular velocity vectors for each body, but I was unable to do the latter. Which caused the bodies to only exhibit parabolic and hyperbolic behaviour but not elliptical. Previously I had tried setting the equations of motion before hand and not had to deal with the vector computation, but although ellipitcal behaviour was exhibited it lacked the organic feeling of the computer finding the equations of motion. 
+Newtonian gravity is very hard to organically simulate, in my previous simulations I set out to compute the equations of motion by finding the sum of the acceleration vectors and the sum of the sum of the angular velocity vectors for each body, but I was unable to do the latter. Which caused the bodies to only exhibit parabolic and hyperbolic behaviour but not elliptical. Previously I had tried setting the equations of motion before hand and not had to deal with the vector computation, but although ellipitcal behaviour was exhibited it lacked the organic feeling of the computer finding the equations of motion.
       </p>
       <p>
-        So instead I turned to vector fields, and made a small application which models the motion of particles by a vector field. Although this is not what I set out to originally do - which was simulate Newtonian gravity with only the masses and distances of each object - it is facinating and produces amazing behaviour, a refreshing way to view vector fields.
+So instead I turned to vector fields, and made a small application which models the motion of particles by a vector field. Although this is not what I set out to originally do - which was simulate Newtonian gravity with only the masses and distances of each object - it is facinating and produces amazing behaviour, a refreshing way to view vector fields.
       </p>
 
       <p>
@@ -115,13 +117,39 @@ for i in range(BORDER, HEIGHT-BORDER, 5):
     for j in range(BORDER, HEIGHT-BORDER, 5):
         objects.append(Body(i, j, WHITE, 1))</code></pre>
 
-      Then to update the position of each point I just iterate through the array and apply its equations of motion.
+        <img src="img4.png" style="width:25em; height:25em; padding: 1em;">
+       
+        <br>
+
+      Now I need to define my vector functions, 
+      <pre><code>def A(x, y):
+    x, y = x-WIDTH//2, y-HEIGHT//2
+    return dt*-x/(x**2+y**2)
+def B(x, y):
+    x, y = x-WIDTH//2, y-HEIGHT//2
+    return dt*-y/(x**2+y**2)
+def F(x, y):
+    return np.array([A(x, y), B(x, y)], dtype=float)</code></pre>
+
+
+            <br>
+      Then to update the position of each point I just iterate through the array and apply its 'equations of motion'. 
       <pre><code>for i in objects:
-    i.color = BLUE
     i.r += F(i.r[0], i.r[1])</code></pre>
 
-      Thats it! Well of course it not much, its just simply applying a function in both x and y to a large set of particles. The code is linked <a href="https://pastebin.com/1T5NaWVq">here</a>
+      Let see what happens,<br>
+      <video width="500", height=250 controls>
+        <source src="vid1.mkv"></source>
+      </video>
+
+      <br>
+
+      There are defintely things to tweek to make it proper but I will leave it.
+      <br>
+      <br>
+      Thats it! Well of course it not much, its just simply applying a function in both x and y to a large set of particles and drawing those changes, the code is linked <a href="url">here</a>
       </p>
+      <h5>the code is not the one used in the article but still works.</h5>
     
     </div>
 
@@ -139,8 +167,6 @@ for i in range(BORDER, HEIGHT-BORDER, 5):
   </div>
 </div>
 
-<div class="footer">
-</div>
 
 </body>
 </html>
