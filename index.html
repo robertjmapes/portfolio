@@ -138,11 +138,12 @@ def V(x, y):
             <br>
       Then to update the position of each point I just iterate through the array and apply its 'equations of motion'. 
       <pre><code>for i in objects:
-    i.r += F(i.r[0], i.r[1])</code></pre>
+      i.r += V(i.r[0], i.r[1])</code></pre>
 
       Let see what happens,<br>
 
       <video src="videos/vid1.mkv" width="320" height="200" controls preload></video>
+      <video src="videos/vid1.mp4" width="320" height="200" controls preload></video>
       <br>
 
       There are defintely things to tweek to make it proper but I will leave it.
